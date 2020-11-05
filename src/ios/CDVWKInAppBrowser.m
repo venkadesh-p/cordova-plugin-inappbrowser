@@ -1078,17 +1078,8 @@ BOOL isExiting = FALSE;
 
 - (void)hide
 {   
- //Custom Hide function
-    __weak UIViewController* weakSelf = self;   
-    // Run later to avoid the "took a long time" log message.
-    dispatch_async(dispatch_get_main_queue(), ^{
-        lastReducedStatusBarHeight = 0.0;
-        if ([weakSelf respondsToSelector:@selector(presentingViewController)]) {
-            [[weakSelf presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-        } else {
-            [[weakSelf parentViewController] dismissViewControllerAnimated:YES completion:nil];
-        }
-    });
+    //Custom Hide function
+    [self.navigationDelegate hide:nil];
 }
 
 - (void)close
